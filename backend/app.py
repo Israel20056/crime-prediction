@@ -6,7 +6,9 @@ app = Flask(__name__)
 CORS(app)
 
 # Load data once at startup
-df = pd.read_csv('../preprocessing/nigeria_crime.csv')
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+df = pd.read_csv(os.path.join(BASE_DIR, '..', 'preprocessing', 'nigeria_crime.csv'))
 
 @app.route('/api/crimes', methods=['GET'])
 def get_crimes():
